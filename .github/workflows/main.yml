@@ -42,9 +42,9 @@ jobs:
         run: |
           gradle --no-daemon assembleRelease
 
-            - name: Localizar APK gerado
+      - name: Procurar APK
         run: |
-          echo "Arquivos APK encontrados:"
+          echo "===== APKs encontrados ====="
           find app/build/outputs -type f -name "*.apk" -print
 
       - name: Disponibilizar APK Release
