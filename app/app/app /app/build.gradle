@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'br.com.inforti.calceletrica'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "br.com.inforti.calceletrica"
+        minSdk 23
+        targetSdk 35
+        versionCode 30
+        versionName "3.0"
+    }
+}
