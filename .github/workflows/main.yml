@@ -34,11 +34,29 @@ jobs:
           unzip -q gradle-8.7-bin.zip
           echo "$PWD/gradle-8.7/bin" >> "$GITHUB_PATH"
 
+      - name: Restaurar keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > app/calc-eletrica-release.jks
+
+      - name: Criar configuração de assinatura
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+        run: |
+          cat > keystore.properties <<EOF
+          storeFile=calc-eletrica-release.jks
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEYSTORE_PASSWORD
+          EOF
+
       - name: Verificar projeto
         run: |
           gradle projects
 
-      - name: Compilar APK Release
+      - name: Compilar APK Release assinado
         run: |
           gradle --no-daemon assembleRelease
 
@@ -50,6 +68,12 @@ jobs:
       - name: Disponibilizar APK Release
         uses: actions/upload-artifact@v4
         with:
-          name: Calc-Eletrica-3.0.1-Release
+          name: Calc-Eletrica-3.0.1-Release-Assinado
           path: app/build/outputs/**/*.apk
           if-no-files-found: error
+
+      - name: Limpar arquivos de assinatura
+        if: always()
+        run: |
+          rm -f app/calc-eletrica-release.jks
+          rm -f keystore.properties
