@@ -2,11 +2,11 @@ plugins {
     id 'com.android.application'
 }
 
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file("keystore.properties")
+def signingProperties = new Properties()
+def signingPropertiesFile = rootProject.file("keystore.properties")
 
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+if (signingPropertiesFile.exists()) {
+    signingProperties.load(new FileInputStream(signingPropertiesFile))
 }
 
 android {
@@ -23,64 +23,11 @@ android {
 
     signingConfigs {
         release {
-            if (keystorePropertiesFile.exists()) {
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-            }
-        }
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.release
-        }
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
-        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
-        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
-    }
-}
-
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-}plugins {
-    id 'com.android.application'
-}
-
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
-android {
-    namespace 'br.com.inforti.calceletrica'
-    compileSdk 35
-
-    defaultConfig {
-        applicationId "br.com.inforti.calceletrica"
-        minSdk 23
-        targetSdk 35
-        versionCode 31
-        versionName "3.0.1"
-    }
-
-    signingConfigs {
-        release {
-            if (keystorePropertiesFile.exists()) {
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
+            if (signingPropertiesFile.exists()) {
+                storeFile file(signingProperties['storeFile'])
+                storePassword signingProperties['storePassword']
+                keyAlias signingProperties['keyAlias']
+                keyPassword signingProperties['keyPassword']
             }
         }
     }
