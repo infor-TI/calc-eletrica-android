@@ -1,4 +1,10 @@
-      - name: Restaurar keystore
+name: Gerar APK Calc-Eletrica
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main      - name: Restaurar keystore
         env:
           KEYSTORE_BASE64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
         run: |
