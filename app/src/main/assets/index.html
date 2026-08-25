@@ -2,549 +2,68 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calc-Elétrica 3.0</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Calc-Elétrica 4.0</title>
 <style>
-*{box-sizing:border-box}
-body{
-    margin:0;
-    background:#0b0b0b;
-    color:#fff;
-    font-family:Arial,sans-serif;
-}
-header{
-    background:#111;
-    padding:18px 15px;
-    text-align:center;
-    border-bottom:2px solid #ff9800;
-}
-header h1{
-    margin:0;
-    color:#ff9800;
-    font-size:25px;
-}
-header p{
-    margin:5px 0 0;
-    color:#bbb;
-}
-nav{
-    display:flex;
-    overflow-x:auto;
-    background:#151515;
-    border-bottom:1px solid #333;
-}
-nav button{
-    min-width:110px;
-    padding:14px 8px;
-    border:0;
-    background:#151515;
-    color:#ddd;
-    font-weight:bold;
-}
-nav button.active{
-    background:#ff9800;
-    color:#111;
-}
-main{
-    padding:15px;
-    max-width:800px;
-    margin:auto;
-}
-section{display:none}
-section.active{display:block}
-.card{
-    background:#151515;
-    border:1px solid #333;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:15px;
-}
-h2{
-    color:#ff9800;
-    margin-top:0;
-}
-label{
-    display:block;
-    margin-top:12px;
-    color:#ddd;
-}
-input,select,textarea{
-    width:100%;
-    padding:12px;
-    margin-top:5px;
-    background:#222;
-    border:1px solid #444;
-    color:#fff;
-    border-radius:7px;
-    font-size:16px;
-}
-button.action{
-    width:100%;
-    margin-top:15px;
-    padding:13px;
-    background:#ff9800;
-    color:#111;
-    border:0;
-    border-radius:8px;
-    font-weight:bold;
-    font-size:16px;
-}
-.result{
-    margin-top:15px;
-    padding:14px;
-    background:#0d2415;
-    border:1px solid #2d7a42;
-    border-radius:8px;
-    line-height:1.7;
-}
-.item{
-    padding:12px;
-    margin-top:8px;
-    background:#202020;
-    border-radius:8px;
-}
-.item button{
-    float:right;
-    background:#c62828;
-    color:#fff;
-    border:0;
-    padding:5px 9px;
-    border-radius:5px;
-}
-.total{
-    font-size:22px;
-    color:#ff9800;
-    font-weight:bold;
-    text-align:right;
-    margin-top:15px;
-}
-.small{color:#aaa;font-size:13px}
-footer{
-    text-align:center;
-    padding:20px;
-    color:#777;
-}
+:root{--bg:#0b0b0b;--card:#151515;--card2:#1d1d1d;--line:#343434;--accent:#ff9800;--text:#fff;--muted:#aaa;--ok:#55c878;--danger:#ef5350}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;padding-bottom:25px}
+header{position:sticky;top:0;z-index:20;background:#111;padding:14px 15px;border-bottom:2px solid var(--accent);box-shadow:0 2px 12px #000}
+header h1{margin:0;color:var(--accent);font-size:24px}header p{margin:4px 0 0;color:#bbb;font-size:13px}
+nav{display:flex;gap:6px;overflow-x:auto;background:#151515;border-bottom:1px solid #333;padding:7px;position:sticky;top:75px;z-index:19}nav button{white-space:nowrap;padding:11px 12px;border:0;border-radius:8px;background:#202020;color:#ddd;font-weight:bold}nav button.active{background:var(--accent);color:#111}
+main{padding:14px;max-width:900px;margin:auto}section{display:none}section.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 3px 10px #0004}h2{color:var(--accent);margin:0 0 10px;font-size:20px}h3{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+label{display:block;margin-top:11px;color:#ddd;font-size:14px}input,select,textarea{width:100%;padding:12px;margin-top:5px;background:#222;border:1px solid #444;color:#fff;border-radius:8px;font-size:16px}input:focus,select:focus,textarea:focus{outline:2px solid #ff980055;border-color:var(--accent)}button.action{width:100%;margin-top:13px;padding:13px;background:var(--accent);color:#111;border:0;border-radius:9px;font-weight:bold;font-size:15px}button.secondary{background:#292929;color:#fff}.homebtn{padding:16px 10px;background:#202020;border:1px solid #3a3a3a;color:#fff;border-radius:11px;font-weight:bold;text-align:left}.homebtn b{display:block;color:var(--accent);font-size:18px;margin-bottom:5px}.result{margin-top:13px;padding:14px;background:#0d2415;border:1px solid #2d7a42;border-radius:9px;line-height:1.65}.warning{margin-top:13px;padding:12px;background:#2b210c;border:1px solid #80621d;border-radius:9px;color:#ffd98a;line-height:1.5}.small{color:var(--muted);font-size:12px;line-height:1.5}.item{padding:12px;margin-top:8px;background:var(--card2);border-radius:9px;border:1px solid #333}.item button{float:right;background:var(--danger);color:#fff;border:0;padding:5px 9px;border-radius:5px}.total{font-size:21px;color:var(--accent);font-weight:bold;text-align:right;margin-top:14px}.stat{background:#202020;border-radius:10px;padding:12px;text-align:center}.stat b{display:block;color:var(--accent);font-size:20px}.check{display:flex;align-items:center;gap:8px;margin-top:10px}.check input{width:auto;margin:0}footer{text-align:center;padding:22px 10px;color:#777;border-top:1px solid #222;margin-top:15px}.badge{display:inline-block;padding:4px 7px;border-radius:6px;background:#292929;color:#ddd;font-size:11px}.hidden{display:none!important}
+@media(max-width:600px){.grid3{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}header{position:relative}nav{top:0}}
 </style>
 </head>
-
 <body>
-
-<header>
-    <h1>⚡ CALC-ELÉTRICA 3.0</h1>
-    <p>Infor-TI • Ferramenta para eletricistas</p>
-</header>
-
-<nav>
-    <button class="active" onclick="aba('inicio',this)">Início</button>
-    <button onclick="aba('ohm',this)">Lei de Ohm</button>
-    <button onclick="aba('potencia',this)">Potência</button>
-    <button onclick="aba('cabo',this)">Cabo</button>
-    <button onclick="aba('orcamento',this)">Orçamento</button>
-</nav>
-
+<header><h1>⚡ CALC-ELÉTRICA 4.0</h1><p>Ferramentas práticas para instalações elétricas • Infor-TI</p></header>
+<nav id="nav"><button class="active" onclick="aba('inicio',this)">Início</button><button onclick="aba('ohm',this)">Ohm</button><button onclick="aba('potencia',this)">Potência</button><button onclick="aba('cabo',this)">Cabos</button><button onclick="aba('solar',this)">Solar</button><button onclick="aba('bateria',this)">Bateria</button><button onclick="aba('cargas',this)">Cargas</button><button onclick="aba('orcamento',this)">Orçamento</button></nav>
 <main>
-
 <section id="inicio" class="active">
-<div class="card">
-<h2>⚡ Calculadora Elétrica</h2>
-<p>Ferramentas rápidas para o profissional eletricista.</p>
-
-<button class="action" onclick="abaId('ohm')">Lei de Ohm</button>
-<button class="action" onclick="abaId('potencia')">Cálculo de Potência</button>
-<button class="action" onclick="abaId('cabo')">Dimensionamento de Cabo</button>
-<button class="action" onclick="abaId('orcamento')">Criar Orçamento</button>
-</div>
-
-<div class="card">
-<h2>📋 Recursos</h2>
-<p>✓ Cálculos elétricos</p>
-<p>✓ Orçamentos</p>
-<p>✓ Materiais e mão de obra</p>
-<p>✓ Salvamento local</p>
-<p>✓ Compartilhamento do orçamento</p>
-</div>
+<div class="card"><h2>⚡ Central de ferramentas</h2><p class="small">Escolha uma ferramenta. Os dados e orçamentos são salvos localmente no aparelho.</p>
+<div class="grid">
+<button class="homebtn" onclick="abaId('ohm')"><b>Ω Lei de Ohm</b>V, A e resistência</button>
+<button class="homebtn" onclick="abaId('potencia')"><b>⚡ Potência</b>W, kW, corrente e FP</button>
+<button class="homebtn" onclick="abaId('cabo')"><b>🧵 Cabos</b>Seção, disjuntor e queda de tensão</button>
+<button class="homebtn" onclick="abaId('solar')"><b>☀️ Sistema solar</b>Painéis, strings e energia</button>
+<button class="homebtn" onclick="abaId('bateria')"><b>🔋 Bateria</b>Ah, Wh e autonomia</button>
+<button class="homebtn" onclick="abaId('cargas')"><b>🏠 Quadro de cargas</b>Soma e corrente estimada</button>
+<button class="homebtn" onclick="abaId('orcamento')"><b>🧾 Orçamento</b>Itens, total e compartilhamento</button>
+<button class="homebtn" onclick="limparDados()"><b>🗑️ Limpar dados</b>Apaga somente dados salvos neste aparelho</button>
+</div></div>
+<div class="card"><h2>📌 Novidades da 4.0</h2><p>✓ Dimensionamento preliminar com queda de tensão</p><p>✓ Sugestão de disjuntor</p><p>✓ Cálculos para energia solar e baterias</p><p>✓ Quadro de cargas com total automático</p><p>✓ Orçamentos salvos e compartilháveis</p><p>✓ Interface otimizada para celular</p></div>
 </section>
-
-<section id="ohm">
-<div class="card">
-<h2>🔌 Lei de Ohm</h2>
-<p class="small">Informe dois valores para calcular o terceiro.</p>
-
-<label>Tensão (V)</label>
-<input id="ohmV" type="number" placeholder="Ex.: 127">
-
-<label>Corrente (A)</label>
-<input id="ohmI" type="number" placeholder="Ex.: 10">
-
-<label>Resistência (Ω)</label>
-<input id="ohmR" type="number" placeholder="Ex.: 12.7">
-
-<button class="action" onclick="ohm()">CALCULAR</button>
-
-<div id="ohmResult"></div>
-</div>
-</section>
-
-<section id="potencia">
-<div class="card">
-<h2>⚡ Potência Elétrica</h2>
-
-<label>Tensão (V)</label>
-<input id="potV" type="number" placeholder="127">
-
-<label>Corrente (A)</label>
-<input id="potI" type="number" placeholder="10">
-
-<label>Fator de potência</label>
-<input id="potFP" type="number" value="1" step="0.01">
-
-<button class="action" onclick="potencia()">CALCULAR POTÊNCIA</button>
-
-<div id="potResult"></div>
-</div>
-</section>
-
-<section id="cabo">
-<div class="card">
-<h2>🧵 Dimensionamento básico de cabo</h2>
-
-<label>Potência da carga (W)</label>
-<input id="cargaW" type="number" placeholder="Ex.: 3000">
-
-<label>Tensão (V)</label>
-<select id="cargaV">
-<option value="127">127 V</option>
-<option value="220">220 V</option>
-</select>
-
-<label>Distância do circuito (metros)</label>
-<input id="dist" type="number" placeholder="Ex.: 20">
-
-<button class="action" onclick="dimensionar()">CALCULAR</button>
-
-<div id="caboResult"></div>
-
-<p class="small">
-Resultado orientativo. O dimensionamento definitivo deve considerar
-NBR 5410, método de instalação, temperatura, agrupamento, queda de
-tensão e capacidade de condução de corrente.
-</p>
-</div>
-</section>
-
-<section id="orcamento">
-<div class="card">
-<h2>🧾 Novo Orçamento</h2>
-
-<label>Nome do cliente</label>
-<input id="cliente" placeholder="Nome do cliente">
-
-<label>Telefone</label>
-<input id="telefone" placeholder="(00) 00000-0000">
-
-<label>Descrição do serviço</label>
-<textarea id="servico" rows="3" placeholder="Ex.: Instalação de tomadas"></textarea>
-
-<label>Quantidade</label>
-<input id="quantidade" type="number" value="1">
-
-<label>Valor unitário (R$)</label>
-<input id="valor" type="number" step="0.01" placeholder="0,00">
-
-<button class="action" onclick="adicionarItem()">ADICIONAR ITEM</button>
-
-<div id="itens"></div>
-
-<div class="total">
-Total: R$ <span id="total">0,00</span>
-</div>
-
-<button class="action" onclick="salvarOrcamento()">💾 SALVAR ORÇAMENTO</button>
-
-<button class="action" onclick="compartilhar()">📲 COMPARTILHAR</button>
-</div>
-
-<div class="card">
-<h2>📋 Orçamentos salvos</h2>
-<div id="salvos"></div>
-</div>
-</section>
-
+<section id="ohm"><div class="card"><h2>Ω Lei de Ohm</h2><p class="small">Preencha exatamente dois valores para descobrir o terceiro.</p><label>Tensão (V)</label><input id="ohmV" type="number" step="any"><label>Corrente (A)</label><input id="ohmI" type="number" step="any"><label>Resistência (Ω)</label><input id="ohmR" type="number" step="any"><button class="action" onclick="ohm()">CALCULAR</button><div id="ohmResult"></div></div></section>
+<section id="potencia"><div class="card"><h2>⚡ Potência elétrica</h2><div class="grid"><div><label>Tensão (V)</label><input id="potV" type="number" step="any" value="127"></div><div><label>Corrente (A)</label><input id="potI" type="number" step="any"></div></div><label>Fator de potência</label><input id="potFP" type="number" step="0.01" value="1"><label>Tipo</label><select id="potTipo"><option value="mono">Monofásico</option><option value="tri">Trifásico</option></select><button class="action" onclick="potencia()">CALCULAR</button><div id="potResult"></div></div></section>
+<section id="cabo"><div class="card"><h2>🧵 Cabo, disjuntor e queda de tensão</h2><label>Potência da carga (W)</label><input id="cargaW" type="number" step="any"><div class="grid"><div><label>Tensão (V)</label><select id="cargaV"><option value="127">127 V</option><option value="220">220 V</option><option value="24">24 V DC</option><option value="48">48 V DC</option></select></div><div><label>Distância (m)</label><input id="dist" type="number" step="any"></div></div><label>Material</label><select id="material"><option value="cobre">Cobre</option><option value="aluminio">Alumínio</option></select><label>Queda máxima desejada (%)</label><input id="quedaMax" type="number" step="0.1" value="4"><button class="action" onclick="dimensionar()">DIMENSIONAR</button><div id="caboResult"></div><p class="small">Estimativa. O dimensionamento definitivo deve considerar NBR 5410, método de instalação, temperatura, agrupamento, capacidade de condução e demais condições do circuito.</p></div></section>
+<section id="solar"><div class="card"><h2>☀️ Sistema solar</h2><div class="grid"><div><label>Potência de cada painel (W)</label><input id="painelW" type="number" value="610"></div><div><label>Quantidade de painéis</label><input id="painelQtd" type="number" value="6"></div></div><div class="grid"><div><label>Horas de sol pico/dia</label><input id="hsp" type="number" step="0.1" value="5"></div><div><label>Rendimento do sistema (%)</label><input id="rend" type="number" step="1" value="80"></div></div><label>Tensão do banco (V)</label><select id="solarV"><option>24</option><option>48</option></select><button class="action" onclick="solar()">CALCULAR SISTEMA</button><div id="solarResult"></div></div></section>
+<section id="bateria"><div class="card"><h2>🔋 Banco de baterias</h2><div class="grid"><div><label>Tensão nominal (V)</label><input id="batV" type="number" value="24"></div><div><label>Capacidade (Ah)</label><input id="batAh" type="number" value="100"></div></div><label>Quantidade de baterias</label><input id="batQtd" type="number" value="2"><label>Profundidade de descarga (%)</label><input id="batDod" type="number" value="90"><label>Consumo médio da carga (W)</label><input id="batLoad" type="number" value="500"><button class="action" onclick="bateria()">CALCULAR AUTONOMIA</button><div id="batResult"></div></div></section>
+<section id="cargas"><div class="card"><h2>🏠 Quadro de cargas</h2><div class="grid"><div><label>Nome da carga</label><input id="cargaNome" placeholder="Ex.: Chuveiro"></div><div><label>Potência (W)</label><input id="cargaPot" type="number"></div></div><div class="grid"><div><label>Quantidade</label><input id="cargaQtd" type="number" value="1"></div><div><label>Tensão (V)</label><select id="cargaTens"><option>127</option><option>220</option></select></div></div><button class="action" onclick="adicionarCarga()">ADICIONAR CARGA</button><div id="listaCargas"></div><div id="cargaTotal" class="total">0 W</div><button class="action secondary" onclick="salvarCargas()">💾 SALVAR QUADRO</button><div id="cargasSalvas"></div></div></section>
+<section id="orcamento"><div class="card"><h2>🧾 Orçamento</h2><div class="grid"><div><label>Cliente</label><input id="cliente"></div><div><label>Telefone</label><input id="telefone"></div></div><label>Descrição do item/serviço</label><input id="servico"><div class="grid"><div><label>Quantidade</label><input id="quantidade" type="number" value="1"></div><div><label>Valor unitário (R$)</label><input id="valor" type="number" step="0.01"></div></div><button class="action" onclick="adicionarItem()">ADICIONAR ITEM</button><div id="itens"></div><div class="total">Total: R$ <span id="total">0,00</span></div><button class="action" onclick="salvarOrcamento()">💾 SALVAR ORÇAMENTO</button><button class="action secondary" onclick="compartilhar()">📲 COMPARTILHAR</button></div><div class="card"><h2>📋 Orçamentos salvos</h2><div id="salvos"></div></div></section>
 </main>
-
-<footer>
-Calc-Elétrica 3.0 • Infor-TI
-</footer>
-
+<footer><b>Calc-Elétrica 4.0</b><br>Calculadora projetada por Mateus dos Santos Dutra<br><span class="small">Infor-TI • Ferramenta de apoio técnico</span></footer>
 <script>
-
-function aba(id,botao){
-    document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-
-    document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
-    if(botao) botao.classList.add("active");
-}
-
-function abaId(id){
-    document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-}
-
-function num(id){
-    return parseFloat(document.getElementById(id).value);
-}
-
-function moeda(v){
-    return v.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
-}
-
-function ohm(){
-
-    let V=num("ohmV");
-    let I=num("ohmI");
-    let R=num("ohmR");
-
-    let resultado="";
-
-    if(!isNaN(V) && !isNaN(I) && isNaN(R)){
-        R=V/I;
-        resultado="Resistência: <b>"+R.toFixed(2)+" Ω</b>";
-    }
-    else if(!isNaN(V) && isNaN(I) && !isNaN(R)){
-        I=V/R;
-        resultado="Corrente: <b>"+I.toFixed(2)+" A</b>";
-    }
-    else if(isNaN(V) && !isNaN(I) && !isNaN(R)){
-        V=I*R;
-        resultado="Tensão: <b>"+V.toFixed(2)+" V</b>";
-    }
-    else{
-        resultado="Preencha exatamente dois valores.";
-    }
-
-    document.getElementById("ohmResult").innerHTML=
-        '<div class="result">'+resultado+'</div>';
-}
-
-function potencia(){
-
-    let V=num("potV");
-    let I=num("potI");
-    let FP=num("potFP");
-
-    if(isNaN(V)||isNaN(I)||isNaN(FP)){
-        document.getElementById("potResult").innerHTML=
-        '<div class="result">Preencha todos os campos.</div>';
-        return;
-    }
-
-    let P=V*I*FP;
-
-    document.getElementById("potResult").innerHTML=
-    '<div class="result">'+
-    'Potência: <b>'+P.toFixed(2)+' W</b><br>'+
-    'Potência: <b>'+(P/1000).toFixed(2)+' kW</b>'+
-    '</div>';
-}
-
-function dimensionar(){
-
-    let W=num("cargaW");
-    let V=num("cargaV");
-    let D=num("dist");
-
-    if(isNaN(W)||isNaN(V)||isNaN(D)||V<=0){
-
-        document.getElementById("caboResult").innerHTML=
-        '<div class="result">Preencha todos os campos.</div>';
-
-        return;
-    }
-
-    let I=W/V;
-
-    let cabo;
-
-    if(I<=10) cabo=1.5;
-    else if(I<=16) cabo=2.5;
-    else if(I<=25) cabo=4;
-    else if(I<=32) cabo=6;
-    else if(I<=41) cabo=10;
-    else if(I<=57) cabo=16;
-    else if(I<=76) cabo=25;
-    else if(I<=101) cabo=35;
-    else cabo=50;
-
-    document.getElementById("caboResult").innerHTML=
-    '<div class="result">'+
-    'Corrente aproximada: <b>'+I.toFixed(2)+' A</b><br>'+
-    'Seção inicial sugerida: <b>'+cabo+' mm²</b><br>'+
-    'Distância informada: <b>'+D+' m</b>'+
-    '</div>';
-}
-
-let itens=[];
-
-function adicionarItem(){
-
-    let desc=document.getElementById("servico").value.trim();
-    let qtd=parseFloat(document.getElementById("quantidade").value);
-    let valor=parseFloat(document.getElementById("valor").value);
-
-    if(!desc || isNaN(qtd) || isNaN(valor)){
-        alert("Preencha descrição, quantidade e valor.");
-        return;
-    }
-
-    itens.push({
-        desc:desc,
-        qtd:qtd,
-        valor:valor
-    });
-
-    document.getElementById("servico").value="";
-    document.getElementById("quantidade").value=1;
-    document.getElementById("valor").value="";
-
-    atualizarItens();
-}
-
-function atualizarItens(){
-
-    let html="";
-    let total=0;
-
-    itens.forEach((item,index)=>{
-
-        let subtotal=item.qtd*item.valor;
-        total+=subtotal;
-
-        html+=
-        '<div class="item">'+
-        '<button onclick="removerItem('+index+')">X</button>'+
-        '<b>'+item.desc+'</b><br>'+
-        item.qtd+' x R$ '+moeda(item.valor)+
-        ' = <b>R$ '+moeda(subtotal)+'</b>'+
-        '</div>';
-    });
-
-    document.getElementById("itens").innerHTML=html;
-
-    document.getElementById("total").innerText=moeda(total);
-}
-
-function removerItem(index){
-
-    itens.splice(index,1);
-    atualizarItens();
-}
-
-function salvarOrcamento(){
-
-    let cliente=document.getElementById("cliente").value.trim();
-
-    if(!cliente){
-        alert("Informe o nome do cliente.");
-        return;
-    }
-
-    if(itens.length===0){
-        alert("Adicione pelo menos um item.");
-        return;
-    }
-
-    let lista=JSON.parse(localStorage.getItem("orcamentos")||"[]");
-
-    let total=itens.reduce((s,i)=>s+(i.qtd*i.valor),0);
-
-    lista.push({
-        cliente:cliente,
-        telefone:document.getElementById("telefone").value,
-        itens:itens,
-        total:total,
-        data:new Date().toLocaleString("pt-BR")
-    });
-
-    localStorage.setItem("orcamentos",JSON.stringify(lista));
-
-    alert("Orçamento salvo com sucesso!");
-
-    carregarSalvos();
-}
-
-function carregarSalvos(){
-
-    let lista=JSON.parse(localStorage.getItem("orcamentos")||"[]");
-
-    let html="";
-
-    lista.forEach((o,i)=>{
-
-        html+=
-        '<div class="item">'+
-        '<b>'+o.cliente+'</b><br>'+
-        o.data+'<br>'+
-        'Total: <b>R$ '+moeda(o.total)+'</b>'+
-        '<br><button onclick="excluirOrcamento('+i+')">Excluir</button>'+
-        '</div>';
-    });
-
-    document.getElementById("salvos").innerHTML=
-        html || '<p class="small">Nenhum orçamento salvo.</p>';
-}
-
-function excluirOrcamento(i){
-
-    let lista=JSON.parse(localStorage.getItem("orcamentos")||"[]");
-
-    lista.splice(i,1);
-
-    localStorage.setItem("orcamentos",JSON.stringify(lista));
-
-    carregarSalvos();
-}
-
-function compartilhar(){
-
-    let cliente=document.getElementById("cliente").value;
-    let telefone=document.getElementById("telefone").value;
-
-    let texto="CALC-ELÉTRICA 3.0\n";
-    texto+="INFOR-TI\n\n";
-    texto+="ORÇAMENTO\n";
-    texto+="Cliente: "+cliente+"\n";
-    texto+="Telefone: "+telefone+"\n\n";
-
-    itens.forEach(i=>{
-        texto+=i.qtd+" x "+i.desc+
-        " — R$ "+moeda(i.qtd*i.valor)+"\n";
-    });
-
-    let total=itens.reduce((s,i)=>s+i.qtd*i.valor,0);
-
-    texto+="\nTOTAL: R$ "+moeda(total);
-
-    if(navigator.share){
-
-        navigator.share({
-            title:"Orçamento Calc-Elétrica",
-            text:texto
-        });
-
-    }else{
-
-        navigator.clipboard.writeText(texto);
-
-        alert("Orçamento copiado. Agora você pode colar no WhatsApp.");
-
-    }
-}
-
-carregarSalvos();
-
+const $=id=>document.getElementById(id); const num=id=>parseFloat($(id).value); const moeda=v=>Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+function aba(id,b){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');window.scrollTo(0,0)}
+function abaId(id){aba(id);let buttons=[...document.querySelectorAll('nav button')];let b=buttons.find(x=>x.getAttribute('onclick')?.includes("'"+id+"'"));if(b)b.classList.add('active')}
+function show(id,html,cls='result'){$(id).innerHTML='<div class="'+cls+'">'+html+'</div>'}
+function ohm(){let V=num('ohmV'),I=num('ohmI'),R=num('ohmR'),r='';if(!isNaN(V)&&!isNaN(I)&&isNaN(R)&&I!==0)r='Resistência: <b>'+R.toFixed(2)+' Ω</b>'.replace('NaN', (V/I).toFixed(2));else if(!isNaN(V)&&isNaN(I)&&!isNaN(R)&&R!==0)r='Corrente: <b>'+(V/R).toFixed(2)+' A</b>';else if(isNaN(V)&&!isNaN(I)&&!isNaN(R))r='Tensão: <b>'+(I*R).toFixed(2)+' V</b>';else if(!isNaN(V)&&!isNaN(I)&&isNaN(R)&&I!==0)r='Resistência: <b>'+(V/I).toFixed(2)+' Ω</b>';else r='Preencha exatamente dois valores válidos.';show('ohmResult',r)}
+function potencia(){let V=num('potV'),I=num('potI'),FP=num('potFP'),tipo=$('potTipo').value;if([V,I,FP].some(isNaN)){show('potResult','Preencha todos os campos.');return}let P=tipo==='tri'?Math.sqrt(3)*V*I*FP:V*I*FP;show('potResult','Potência ativa: <b>'+P.toFixed(2)+' W</b><br>'+ (P/1000).toFixed(2)+' kW<br>Corrente informada: <b>'+I.toFixed(2)+' A</b>')}
+function dimensionar(){let W=num('cargaW'),V=num('cargaV'),D=num('dist'),max=num('quedaMax');if([W,V,D,max].some(isNaN)||V<=0||D<0){show('caboResult','Preencha os dados corretamente.');return}let I=W/V;let tabela=[[1.5,15],[2.5,21],[4,28],[6,36],[10,50],[16,68],[25,89],[35,110],[50,134],[70,171],[95,207]];let cabo=(tabela.find(x=>I<=x[1])||tabela[tabela.length-1])[0];let rho=$('material').value==='aluminio'?0.0282:0.0175;let queda=(2*D*I*rho/cabo/V)*100;while(queda>max&&cabo<tabela[tabela.length-1][0]){cabo=tabela[tabela.findIndex(x=>x[0]===cabo)+1][0];queda=(2*D*I*rho/cabo/V)*100}let disj=[10,16,20,25,32,40,50,63,80,100,125].find(x=>x>=I*1.25)||125;show('caboResult','Corrente estimada: <b>'+I.toFixed(2)+' A</b><br>Seção preliminar: <b>'+cabo+' mm² '+$('material').value+'</b><br>Disjuntor sugerido: <b>'+disj+' A</b><br>Queda estimada: <b>'+queda.toFixed(2)+'%</b> '+(queda<=max?'✓ dentro da meta':'⚠ acima da meta')+'<br>Queda máxima configurada: '+max+'%')}
+function solar(){let pw=num('painelW'),q=num('painelQtd'),h=num('hsp'),r=num('rend'),v=num('solarV');if([pw,q,h,r].some(isNaN)||q<=0){show('solarResult','Preencha os campos.');return}let total=pw*q,energia=total*h*(r/100),corr=total/v;show('solarResult','Potência instalada: <b>'+total.toFixed(0)+' W ('+(total/1000).toFixed(2)+' kWp)</b><br>Geração diária estimada: <b>'+energia.toFixed(0)+' Wh/dia</b> ('+(energia/1000).toFixed(2)+' kWh/dia)<br>Corrente aproximada do banco a plena potência: <b>'+corr.toFixed(1)+' A</b><br>Banco considerado: <b>'+v+' V</b>')}
+function bateria(){let v=num('batV'),ah=num('batAh'),q=num('batQtd'),dod=num('batDod'),load=num('batLoad');if([v,ah,q,dod,load].some(isNaN)||load<=0){show('batResult','Preencha os campos.');return}let nominal=v*ah*q,util=nominal*dod/100,h=util/load;show('batResult','Energia nominal: <b>'+nominal.toLocaleString('pt-BR')+' Wh</b><br>Energia utilizável: <b>'+util.toLocaleString('pt-BR')+' Wh</b><br>Autonomia teórica: <b>'+h.toFixed(2)+' h</b><br>Corrente aproximada da carga: <b>'+(load/v).toFixed(1)+' A</b>')}
+let itens=[],cargas=[];
+function adicionarCarga(){let n=$('cargaNome').value.trim(),p=num('cargaPot'),q=num('cargaQtd'),v=num('cargaTens');if(!n||isNaN(p)||isNaN(q)||q<=0){alert('Preencha nome, potência e quantidade.');return}cargas.push({n,p,q,v});$('cargaNome').value='';$('cargaPot').value='';$('cargaQtd').value=1;renderCargas()}
+function renderCargas(){let total=0,h='';cargas.forEach((c,i)=>{let s=c.p*c.q;total+=s;h+='<div class="item"><button onclick="cargas.splice('+i+',1);renderCargas()">X</button><b>'+c.n+'</b><br>'+c.q+' × '+c.p+' W • '+c.v+' V<br>Subtotal: <b>'+s+' W</b></div>'});$('listaCargas').innerHTML=h||'<p class="small">Nenhuma carga adicionada.</p>';$('cargaTotal').innerText=total+' W • '+(total/1000).toFixed(2)+' kW'}
+function salvarCargas(){if(!cargas.length){alert('Adicione cargas primeiro.');return}localStorage.setItem('quadroCargas',JSON.stringify(cargas));alert('Quadro salvo neste aparelho.');renderCargasSalvas()}
+function renderCargasSalvas(){let x=JSON.parse(localStorage.getItem('quadroCargas')||'[]');if(!x.length){$('cargasSalvas').innerHTML='<p class="small">Nenhum quadro salvo.</p>';return}let t=x.reduce((s,c)=>s+c.p*c.q,0);$('cargasSalvas').innerHTML='<div class="result">Quadro salvo: <b>'+t+' W ('+(t/1000).toFixed(2)+' kW)</b><br>'+x.length+' tipo(s) de carga.</div>'}
+function adicionarItem(){let d=$('servico').value.trim(),q=num('quantidade'),v=num('valor');if(!d||isNaN(q)||isNaN(v)){alert('Preencha descrição, quantidade e valor.');return}itens.push({desc:d,qtd:q,valor:v});$('servico').value='';$('quantidade').value=1;$('valor').value='';atualizarItens()}
+function atualizarItens(){let h='',t=0;itens.forEach((x,i)=>{let s=x.qtd*x.valor;t+=s;h+='<div class="item"><button onclick="itens.splice('+i+',1);atualizarItens()">X</button><b>'+x.desc+'</b><br>'+x.qtd+' × R$ '+moeda(x.valor)+' = <b>R$ '+moeda(s)+'</b></div>'});$('itens').innerHTML=h||'<p class="small">Nenhum item adicionado.</p>';$('total').innerText=moeda(t)}
+function salvarOrcamento(){let cliente=$('cliente').value.trim();if(!cliente||!itens.length){alert('Informe o cliente e adicione pelo menos um item.');return}let lista=JSON.parse(localStorage.getItem('orcamentos')||'[]');lista.push({cliente,telefone:$('telefone').value,itens:[...itens],total:itens.reduce((s,x)=>s+x.qtd*x.valor,0),data:new Date().toLocaleString('pt-BR')});localStorage.setItem('orcamentos',JSON.stringify(lista));alert('Orçamento salvo com sucesso!');carregarSalvos()}
+function carregarSalvos(){let l=JSON.parse(localStorage.getItem('orcamentos')||'[]'),h='';l.forEach((o,i)=>h+='<div class="item"><button onclick="excluirOrcamento('+i+')">X</button><b>'+o.cliente+'</b><br>'+o.data+'<br>Total: <b>R$ '+moeda(o.total)+'</b></div>');$('salvos').innerHTML=h||'<p class="small">Nenhum orçamento salvo.</p>'}
+function excluirOrcamento(i){let l=JSON.parse(localStorage.getItem('orcamentos')||'[]');l.splice(i,1);localStorage.setItem('orcamentos',JSON.stringify(l));carregarSalvos()}
+function compartilhar(){let texto='CALC-ELÉTRICA 4.0\nCalculadora projetada por Mateus dos Santos Dutra\n\nORÇAMENTO\nCliente: '+$('cliente').value+'\nTelefone: '+$('telefone').value+'\n\n';itens.forEach(x=>texto+=x.qtd+' x '+x.desc+' - R$ '+moeda(x.qtd*x.valor)+'\n');texto+='\nTOTAL: R$ '+$('total').innerText;if(navigator.share){navigator.share({title:'Orçamento Calc-Elétrica',text:texto}).catch(()=>{})}else{navigator.clipboard?.writeText(texto);alert('Orçamento copiado. Cole no WhatsApp ou outro aplicativo.')}}
+function limparDados(){if(confirm('Apagar orçamentos e quadro de cargas salvos neste aparelho?')){localStorage.removeItem('orcamentos');localStorage.removeItem('quadroCargas');carregarSalvos();renderCargasSalvas();alert('Dados apagados.')}}
+carregarSalvos();renderCargas();renderCargasSalvas();
 </script>
-
-</body>
-</html>
+</body></html>
