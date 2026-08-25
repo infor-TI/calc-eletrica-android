@@ -68,7 +68,7 @@ jobs:
       - name: Disponibilizar APK Release
         uses: actions/upload-artifact@v4
         with:
-          name: Calc-Eletrica-3.0.1-Release-Assinado
+          name: name: Calc-Eletrica-4.0.0-Release-Assinado
           path: app/build/outputs/**/*.apk
           if-no-files-found: error
 
