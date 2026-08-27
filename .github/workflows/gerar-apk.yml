@@ -65,11 +65,11 @@ jobs:
       - name: Disponibilizar APK Release
         uses: actions/upload-artifact@v4
         with:
-  name: Calc-Eletrica-4.1.0-Release-Assinado
-  path: app/build/outputs/**/*.apk
-  if-no-files-found: error
-      
-    - name: Limpar arquivos de assinatura
+          name: Calc-Eletrica-4.1.0-Release-Assinado
+          path: app/build/outputs/**/*.apk
+          if-no-files-found: error
+
+      - name: Limpar arquivos de assinatura
         if: always()
         run: |
           rm -f calc-eletrica-release.jks
